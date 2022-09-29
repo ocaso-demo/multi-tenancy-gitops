@@ -11,7 +11,7 @@ resources:
 #- argocd/operators/ibm-assetrepository-operator.yaml
 #- argocd/operators/ibm-cp4i-operators.yaml
 #- argocd/operators/ibm-datapower-operator.yaml
-#- argocd/operators/ibm-eventstreams-operator.yaml
+- argocd/operators/ibm-eventstreams-operator.yaml
 #- argocd/instances/ibm-eventstreams-instance.yaml
 #- argocd/operators/ibm-mq-operator.yaml
 #- argocd/operators/ibm-opsdashboard-operator.yaml
@@ -52,15 +52,15 @@ resources:
 #- argocd/instances/ibm-cp4sthreatmanagements-instance.yaml
 
 ## IBM Foundational Services / Common Services
-#- argocd/operators/ibm-foundations.yaml
-#- argocd/instances/ibm-foundational-services-instance.yaml
+- argocd/operators/ibm-foundations.yaml
+- argocd/instances/ibm-foundational-services-instance.yaml
 #- argocd/operators/ibm-automation-foundation-core-operator.yaml
 #- argocd/operators/ibm-automation-foundation-operator.yaml
 #- argocd/operators/ibm-license-service-operator.yaml
 #- argocd/instances/ibm-license-service-instance.yaml
 
 ## IBM Catalogs
-#- argocd/operators/ibm-catalogs.yaml
+- argocd/operators/ibm-catalogs.yaml
 
 # PAW
 #- argocd/instances/ibm-paw.yaml
