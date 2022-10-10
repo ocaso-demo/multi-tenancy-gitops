@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-submariner-azure
+  labels:
+    gitops.tier.layer: rhacm
+  annotations:
+    argocd.argoproj.io/sync-wave: "410"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: rhacm
+  source:
+    path: submariner
+    helm:
+      values: |
+        clusterSet:
+          name: azure-clusterset
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

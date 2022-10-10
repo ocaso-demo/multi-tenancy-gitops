@@ -1,0 +1,32 @@
+resources:
+# RHACM Policies
+- argocd/policies/install-gitops.yaml
+
+# RHACM Credentials
+# - argocd/providers/credentials.yaml
+
+# RHACM Hive Clusters
+# - argocd/submariner/azure-clusterset.yaml
+# - argocd/clusters/azure-hive-c1.yaml
+# - argocd/clusters/azure-hive-c2.yaml
+# - argocd/clusters/azure-hive-c3.yaml
+
+# RHACM HADR with ODF
+# - argocd/operators/odr-hub-operator.yaml
+# - argocd/operators/odf-multicluster-orchestrator-operator.yaml
+# - argocd/instances/odf-multicluster-orchestrator-instance.yaml
+# - argocd/hadrconfig.yaml 
+
+
+patches:
+- target:
+    group: argoproj.io
+    kind: Application
+    labelSelector: "gitops.tier.layer=rhacm"
+  patch: |-
+    - op: add
+      path: /spec/source/repoURL
+      value: https://github.com/ocaso-demo/multi-tenancy-gitops-rhacm.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: main

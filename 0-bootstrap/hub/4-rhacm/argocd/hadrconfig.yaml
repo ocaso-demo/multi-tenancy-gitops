@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-cluster-hadrconfig
+  labels:
+    gitops.tier.layer: rhacm
+  annotations:
+    argocd.argoproj.io/sync-wave: "420"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: rhacm
+  source:
+    path: hadrconfig
+    helm:
+      values: |
+        clusters:
+          - name: azure-hive-c1
+            role: primary
+          - name: azure-hive-c2
+            role: secondary
+        schedulingIntervals:
+          - 1m
+          - 5m
+          - 15m
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

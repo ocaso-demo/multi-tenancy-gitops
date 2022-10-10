@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: storage
+  labels:
+    gitops.tier.layer: infra
+  annotations:
+    argocd.argoproj.io/sync-wave: "110"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: openshift-storage
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: storage
+    helm:
+      values: |
+        channel: stable-4.10
+        sizeGiB: 2048
+        storageClass: ibmc-vpc-block-10iops-tier
+        argo:
+          namespace: openshift-gitops
+          serviceAccount: openshift-gitops-cntk-argocd-application-controller
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences:
+  - group: ""
+    kind: StorageCluster
+    jsonPointers:
+    - /spec/storageDeviceSets/0/dataPVCTemplate/spec/resources/requests/storage

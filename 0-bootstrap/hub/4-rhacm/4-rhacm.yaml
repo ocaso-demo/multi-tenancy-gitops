@@ -1,0 +1,69 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: rhacm
+  labels:
+    gitops.tier.layer: rhacm
+spec:
+  sourceRepos: []  # Populated by kustomize patches in 4-rhacm/kustomization.yaml
+  destinations:
+  - namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  - namespace: rhacm-policies
+    server: https://kubernetes.default.svc
+  - namespace: multi-tenancy-gitops-channel-ns
+    server: https://kubernetes.default.svc
+  - namespace: openshift-operators
+    server: https://kubernetes.default.svc
+  - namespace: azure-hive-c1
+    server: https://kubernetes.default.svc
+  - namespace: azure-hive-c2
+    server: https://kubernetes.default.svc
+  - namespace: azure-hive-c3
+    server: https://kubernetes.default.svc
+  - namespace: azure-clusterset-broker
+    server: https://kubernetes.default.svc
+  - namespace: openshift-dr-system
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  - group: cluster.open-cluster-management.io
+    kind: ManagedCluster
+  - group: cluster.open-cluster-management.io
+    kind: ManagedClusterSet
+  - group: ramendr.openshift.io
+    kind: DRPolicy 
+  - group: multicluster.odf.openshift.io
+    kind: MirrorPeer
+  - group: addon.open-cluster-management.io
+    kind: ManagedClusterAddons
+  roles:
+  # A role which provides read-only access to all applications in the project
+  - name: read-only
+    description: Read-only privileges to my-project
+    policies:
+    - p, proj:my-project:read-only, applications, get, my-project/*, allow
+    groups:
+    - argocd-admins
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm
+  annotations:
+    argocd.argoproj.io/sync-wave: "400"
+  labels:
+    gitops.tier.layer: gitops
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: rhacm
+  source: # repoURL  and targetRevision populated by kustomize patches in 3-apps/kustomization.yaml
+    path: 0-bootstrap/hub/4-rhacm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

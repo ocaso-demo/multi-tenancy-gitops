@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-cluster-aws-hive-c1
+  labels:
+    gitops.tier.layer: rhacm
+  annotations:
+    argocd.argoproj.io/sync-wave: "420"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: rhacm
+  source:
+    path: clusters
+    helm:
+      values: |
+        cluster:
+          name: "aws-hive-c1"
+          vendor: "OpenShift"
+          baseDomain: aws.ibm-gtmaa.dev
+          version: 4.9.25
+          publicsshkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJlPS4hSmr8DKh3L9YVOusuA3w8aqQc+33Z15ylXpEg30K6xkBZ40zTtAGACsBvsGAWuVuCeOEtnfU9d9MCTYU0FgnT9u+5hUrcAxBhEjFpDmhaexqHFWrYalFFgvIdTttFBLYIIb2nHQ9t7YdlmQIJuSRTCANs4lMmqyrCHCgcO+GXmubvg2lFfDKZjMyY7hn+FCeWKyBPxmL7AbyAp0Q9asL8zJhSVpKtjWQS5tOeV0RrwgrKb72qfLcq6yJB+d2ihmTvnLzikFeBQpwTXSktj/2J2vudT82Eey4u9QPAr6v24drdG+viM2KGpRRQefvmGASkH0vcaMnfhrhpnwf ncolon@ncm-mbpr.local"
+
+        cloud:
+          provider: "AWS"
+          region: "us-east-2"
+          subnets:
+            - subnet-0dd72e0aa8d5316ec
+            - subnet-0315809830b57304a
+  # ignoreDifferences:
+  # - group: hive.openshift.io
+  #   kind: ClusterDeployment
+  #   jsonPointers:
+  #   - /spec/installed

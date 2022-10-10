@@ -1,0 +1,74 @@
+resources:
+# - argocd/consolelink.yaml
+- argocd/consolenotification.yaml
+#- argocd/namespace-ibm-common-services.yaml
+- argocd/namespace-ci.yaml
+#- argocd/namespace-dev.yaml
+#- argocd/namespace-staging.yaml
+#- argocd/namespace-prod.yaml
+#- argocd/namespace-cloudpak.yaml
+#- argocd/namespace-istio-system.yaml
+#- argocd/namespace-openldap.yaml
+#- argocd/namespace-sealed-secrets.yaml
+# - argocd/namespace-tools.yaml
+# - argocd/namespace-instana-agent.yaml
+# - argocd/secrets/instana-agent-key.yaml
+#- argocd/namespace-robot-shop.yaml
+# - argocd/namespace-openshift-storage.yaml
+#- argocd/namespace-spp.yaml
+#- argocd/namespace-spp-velero.yaml
+#- argocd/namespace-baas.yaml
+#- argocd/namespace-db2.yaml
+#- argocd/namespace-mq.yaml
+#- argocd/serviceaccounts-ibm-common-services.yaml
+#- argocd/serviceaccounts-tools.yaml
+#- argocd/serviceaccounts-db2.yaml
+#- argocd/serviceaccounts-mq.yaml
+#- argocd/scc-wkc-iis.yaml
+# - argocd/storage.yaml
+#- argocd/infraconfig.yaml
+# - argocd/machinesets.yaml
+
+# External Secrets Operator
+- argocd/rbac/externalsecrets.yaml
+- argocd/namespaces/external-secrets.yaml
+
+# RHACM
+- argocd/rbac/rhacm.yaml
+- argocd/namespaces/open-cluster-management.yaml
+- argocd/namespaces/rhacm-policies.yaml
+- argocd/namespaces/multi-tenancy-gitops-channel.yaml
+
+# RHACM HADR with ODF
+# - argocd/namespaces/openshift-dr-system.yaml
+
+# RHACM Observability
+# - argocd/namespaces/rhacm-observability.yaml
+
+# OpenShift Virtualization
+# - argocd/rbac/openshift-virtualization.yaml
+# - argocd/namespaces/openshift-virtualization.yaml
+
+# Instana Server
+# - argocd/rbac/instana.yaml
+# - argocd/namespaces/instana-operator.yaml
+# - argocd/namespaces/instana-core.yaml
+# - argocd/namespaces/instana-units.yaml
+
+
+# turbonomic
+# - argocd/namespaces/turbonomic.yaml
+
+
+patches:
+- target:
+    group: argoproj.io
+    kind: Application
+    labelSelector: "gitops.tier.layer=infra"
+  patch: |-
+    - op: add
+      path: /spec/source/repoURL
+      value: https://github.com/ocaso-demo/multi-tenancy-gitops-infra.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: master
