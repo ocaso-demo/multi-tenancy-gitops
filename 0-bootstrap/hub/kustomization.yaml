@@ -1,7 +1,7 @@
 resources:
 - 1-infra/1-infra.yaml
 - 2-services/2-services.yaml
-- 3-apps/3-apps.yaml
+# - 3-apps/3-apps.yaml
 - 4-rhacm/4-rhacm.yaml
 patches:
 - target:
@@ -61,6 +61,9 @@ patches:
     - op: add
       path: /spec/sourceRepos/-
       value: https://github.com/ocaso-demo/multi-tenancy-gitops-apps.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: master
 - target:
     group: argoproj.io
     kind: AppProject
