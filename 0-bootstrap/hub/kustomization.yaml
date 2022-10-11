@@ -61,9 +61,6 @@ patches:
     - op: add
       path: /spec/sourceRepos/-
       value: https://github.com/ocaso-demo/multi-tenancy-gitops-apps.git
-    - op: add
-      path: /spec/source/targetRevision
-      value: master
 - target:
     group: argoproj.io
     kind: AppProject
