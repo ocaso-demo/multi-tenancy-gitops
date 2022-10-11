@@ -44,4 +44,4 @@ patches:
       value: https://github.com/ocaso-demo/multi-tenancy-gitops-apps.git
     - op: add
       path: /spec/source/targetRevision
-      value: master
+      value: main
