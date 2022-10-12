@@ -18,4 +18,8 @@ find . -name '*.yaml' -print0 |
     fi
   done
 rm new-cluster.sh
+
+nl=$'\n'
+sed -i -r 's@  destinations:@  destinations:'"\\${nl}"'  - namespace: '"\\${NEW_CLUSTER}\\${nl}"'    server: https://kubernetes.default.svc@g' ../../hub/4-rhacm/4-rhacm.yaml
+
 echo "git commit and push changes now"

@@ -11,6 +11,9 @@ resources:
 # - argocd/clusters/azure-hive-c2.yaml
 # - argocd/clusters/azure-hive-c3.yaml
 
+# RHACM Imported Clusters
+- argocd/clusters/imported
+
 # RHACM HADR with ODF
 # - argocd/operators/odr-hub-operator.yaml
 # - argocd/operators/odf-multicluster-orchestrator-operator.yaml
