@@ -8,6 +8,8 @@ metadata:
 spec:
   sourceRepos: []  # Populated by kustomize patches in 4-rhacm/kustomization.yaml
   destinations:
+  - namespace: 	est-cluster-2
+    server: https://kubernetes.default.svc
   - namespace: openshift-gitops
     server: https://kubernetes.default.svc
   - namespace: rhacm-policies

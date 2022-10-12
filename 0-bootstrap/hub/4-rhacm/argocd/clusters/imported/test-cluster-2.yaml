@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-cluster-	est-cluster-2
+  labels:
+    gitops.tier.layer: rhacm
+  annotations:
+    argocd.argoproj.io/sync-wave: "420"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: rhacm
+  source:
+    path: imported_clusters
+    helm:
+      values: |
+        cluster:
+          name: "	est-cluster-2"

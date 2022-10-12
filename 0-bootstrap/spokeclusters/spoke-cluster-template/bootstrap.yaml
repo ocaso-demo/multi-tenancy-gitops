@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-${RHACM_CLUSTER_TEMPLATE}
+  name: bootstrap-test-cluster-2
   namespace: openshift-gitops
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: 0-bootstrap/spokeclusters/${RHACM_CLUSTER_TEMPLATE}
+    path: 0-bootstrap/spokeclusters/test-cluster-2
     repoURL: https://github.com/rhacm-gitops/multi-tenancy-gitops.git
     targetRevision: master
   syncPolicy:
