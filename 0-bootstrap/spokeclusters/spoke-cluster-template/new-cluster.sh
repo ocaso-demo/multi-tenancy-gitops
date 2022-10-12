@@ -1,6 +1,9 @@
 #!/bin/bash
 
-C_DIR=$(dirname ${BASH_SOURCE})
+# C_DIR=$(dirname ${BASH_SOURCE})
+C_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+echo "This is the current directory: ${C_DIR}"
+
 NEW_CLUSTER=$1
 if [ -z "${NEW_CLUSTER}" ]; then
   echo "Usage: $0 <new-cluster-name>"
@@ -21,6 +24,7 @@ find . -name '*.yaml' -print0 |
 rm new-cluster.sh
 
 nl=$'\n'
-sed -i -r 's@  destinations:@  destinations:'"\\${nl}"'  - namespace: '"\\${NEW_CLUSTER}\\${nl}"'    server: https://kubernetes.default.svc@g' ../../hub/4-rhacm/4-rhacm.yaml
+sed -i'.bak' -e 's@  destinations:@  destinations:'"\\${nl}"'  - namespace: '"${NEW_CLUSTER}\\${nl}"'    server: https://kubernetes.default.svc@g' ../../hub/4-rhacm/4-rhacm.yaml
+rm "../../hub/4-rhacm/4-rhacm.yaml.bak"
 
 echo "git commit and push changes now"
