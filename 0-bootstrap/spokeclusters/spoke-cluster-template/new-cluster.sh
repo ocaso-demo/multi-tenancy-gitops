@@ -7,7 +7,8 @@ if [ -z "${NEW_CLUSTER}" ]; then
   exit 1
 fi
 cp -Rp $C_DIR ../$NEW_CLUSTER
-pushd $C_DIR/../$NEW_CLUSTER
+# pushd $C_DIR/../$NEW_CLUSTER
+cd $C_DIR/../$NEW_CLUSTER
 
 find . -name '*.yaml' -print0 |
   while IFS= read -r -d '' File; do
