@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: 0-bootstrap/spokeclusters/test-cluster-2
-    repoURL: https://github.com/rhacm-gitops/multi-tenancy-gitops.git
+    repoURL: https://github.com/ocaso-demo/multi-tenancy-gitops.git
     targetRevision: master
   syncPolicy:
     automated:
