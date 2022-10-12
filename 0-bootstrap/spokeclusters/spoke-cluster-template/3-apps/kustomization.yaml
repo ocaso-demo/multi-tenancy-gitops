@@ -44,4 +44,4 @@ patches:
       value: https://github.com/rhacm-gitops/multi-tenancy-gitops-apps.git
     - op: add
       path: /spec/source/targetRevision
-      value: main
+      value: master
