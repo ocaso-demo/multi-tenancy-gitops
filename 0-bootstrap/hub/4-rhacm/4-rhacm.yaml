@@ -8,6 +8,8 @@ metadata:
 spec:
   sourceRepos: []  # Populated by kustomize patches in 4-rhacm/kustomization.yaml
   destinations:
+  - namespace: test-cluster-1
+    server: https://kubernetes.default.svc
   - namespace: test-cluster-2
     server: https://kubernetes.default.svc
   - namespace: openshift-gitops

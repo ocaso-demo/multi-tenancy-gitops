@@ -12,6 +12,7 @@ resources:
 # - argocd/clusters/azure-hive-c3.yaml
 
 # RHACM Imported Clusters
+- argocd/clusters/imported/test-cluster-1.yaml
 - argocd/clusters/imported/test-cluster-2.yaml
 
 # RHACM HADR with ODF
