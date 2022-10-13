@@ -17,15 +17,19 @@ spec:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: rhacm
-  ignoreDifferences:
-  - group: cluster.open-cluster-management.io
-    kind: ManagedCluster
-    jsonPointers:
-    - /metadata/labels/cloud
-    - /metadata/labels/vendor
+  # ignoreDifferences:
+  # - group: cluster.open-cluster-management.io
+  #   kind: ManagedCluster
+  #   jsonPointers:
+  #   - /metadata/labels/cloud
+  #   - /metadata/labels/vendor
   source:
     path: imported_clusters
     helm:
       values: |
         cluster:
           name: "test-cluster-2"
+          vendor: "OpenShift"
+        
+        cloud:
+          provider: "IBM"
