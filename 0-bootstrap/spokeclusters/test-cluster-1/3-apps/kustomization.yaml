@@ -22,7 +22,7 @@ resources:
 # - argocd/es/dev.yaml
 
 # - argocd/ocaso/ocaso-cicd-apps.yaml
-# - argocd/ocaso/ocaso-dev-apps.yaml
+ - argocd/ocaso/ocaso-dev-apps.yaml
 
 #- argocd/bookinfo/cicd.yaml
 #- argocd/bookinfo/dev.yaml
