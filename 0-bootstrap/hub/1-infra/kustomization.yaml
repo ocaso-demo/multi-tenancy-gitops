@@ -39,7 +39,7 @@ resources:
 - argocd/namespaces/rhacm-policies.yaml
 - argocd/namespaces/multi-tenancy-gitops-channel.yaml
 - argocd/namespaces/multi-tenancy-gitops-apps-channel.yaml
-# - argocd/namespaces/rhacm-apps.yaml
+- argocd/namespaces/rhacm-apps.yaml
 
 # RHACM HADR with ODF
 # - argocd/namespaces/openshift-dr-system.yaml
