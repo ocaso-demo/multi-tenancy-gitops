@@ -6,6 +6,8 @@ metadata:
     gitops.tier.layer: rhacm
   annotations:
     argocd.argoproj.io/sync-wave: "490"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: openshift-gitops
