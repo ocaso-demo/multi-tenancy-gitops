@@ -38,6 +38,7 @@ resources:
 - argocd/namespaces/open-cluster-management.yaml
 - argocd/namespaces/rhacm-policies.yaml
 - argocd/namespaces/multi-tenancy-gitops-channel.yaml
+- argocd/namespaces/multi-tenancy-gitops-apps-channel.yaml
 
 # RHACM HADR with ODF
 # - argocd/namespaces/openshift-dr-system.yaml
