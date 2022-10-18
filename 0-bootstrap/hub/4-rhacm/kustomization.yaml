@@ -22,7 +22,7 @@ resources:
 # - argocd/hadrconfig.yaml 
 
 # RHACM Applications
-- argocd/applications/ocaso-hello-app-rhacm.yaml
+# - argocd/applications/ocaso-hello-app-rhacm.yaml
 
 patches:
 - target:
