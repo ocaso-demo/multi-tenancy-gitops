@@ -12,6 +12,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: test-cluster-2
     server: https://kubernetes.default.svc
+  - namespace: dev-cluster
+    server: https://kubernetes.default.svc
   - namespace: openshift-gitops
     server: https://kubernetes.default.svc
   - namespace: rhacm-policies
