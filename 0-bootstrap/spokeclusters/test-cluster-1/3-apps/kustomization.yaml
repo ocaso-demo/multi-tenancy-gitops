@@ -19,10 +19,10 @@ resources:
 #- argocd/apic/multi-cluster-app.yaml
 #- argocd/apic/multi-cluster-ops.yaml
 
-# - argocd/es/dev.yaml
+#- argocd/es/dev.yaml
 
-# - argocd/ocaso/ocaso-cicd-apps.yaml
- - argocd/ocaso/ocaso-dev-apps.yaml
+#- argocd/ocaso/ocaso-cicd-apps.yaml
+#- argocd/ocaso/ocaso-dev-apps.yaml
 
 #- argocd/bookinfo/cicd.yaml
 #- argocd/bookinfo/dev.yaml
