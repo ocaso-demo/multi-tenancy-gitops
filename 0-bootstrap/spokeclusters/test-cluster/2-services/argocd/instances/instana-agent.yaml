@@ -163,7 +163,7 @@ spec:
 
           cluster:
             # cluster.name represents the name that will be assigned to this cluster in Instana
-            name: test-cluster-1
+            name: test-cluster
 
           leaderElector:
             image:

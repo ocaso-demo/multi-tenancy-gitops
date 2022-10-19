@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-test-cluster-1
+  name: bootstrap-test-cluster
   namespace: openshift-gitops
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: 0-bootstrap/spokeclusters/test-cluster-1
+    path: 0-bootstrap/spokeclusters/test-cluster
     repoURL: https://github.com/ocaso-demo/multi-tenancy-gitops.git
     targetRevision: master
   syncPolicy:

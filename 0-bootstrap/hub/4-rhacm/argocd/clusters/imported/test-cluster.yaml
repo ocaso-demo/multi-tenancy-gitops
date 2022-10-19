@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rhacm-cluster-test-cluster-1
+  name: rhacm-cluster-test-cluster
   labels:
     gitops.tier.layer: rhacm
   annotations:
@@ -22,7 +22,7 @@ spec:
     helm:
       values: |
         cluster:
-          name: "test-cluster-1"
+          name: "test-cluster"
           vendor: "OpenShift"
         
         cloud:
